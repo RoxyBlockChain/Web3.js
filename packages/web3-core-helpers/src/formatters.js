@@ -234,11 +234,11 @@ var inputSignFormatter = function (data) {
  */
 var outputTransactionFormatter = function (tx) {
     if (tx.blockNumber !== null)
-        tx.blockNumber = utils.outputBigNumberFormatter(tx.blockNumber);
+        tx.blockNumber = outputBigNumberFormatter(tx.blockNumber);
     if (tx.transactionIndex !== null)
-        tx.transactionIndex = utils.outputBigNumberFormatter(tx.transactionIndex);
-    tx.nonce = utils.outputBigNumberFormatter(tx.nonce);
-    tx.gas = utils.outputBigNumberFormatter(tx.gas);
+        tx.transactionIndex = outputBigNumberFormatter(tx.transactionIndex);
+    tx.nonce = outputBigNumberFormatter(tx.nonce);
+    tx.gas = outputBigNumberFormatter(tx.gas);
     tx.gasPrice = outputBigNumberFormatter(tx.gasPrice);
     tx.value = outputBigNumberFormatter(tx.value);
 
@@ -268,11 +268,11 @@ var outputTransactionReceiptFormatter = function (receipt) {
     }
 
     if (receipt.blockNumber !== null)
-        receipt.blockNumber = utils.outputBigNumberFormatter(receipt.blockNumber);
+        receipt.blockNumber = outputBigNumberFormatter(receipt.blockNumber);
     if (receipt.transactionIndex !== null)
-        receipt.transactionIndex = utils.outputBigNumberFormatter(receipt.transactionIndex);
-    receipt.cumulativeGasUsed = utils.outputBigNumberFormatter(receipt.cumulativeGasUsed);
-    receipt.gasUsed = utils.outputBigNumberFormatter(receipt.gasUsed);
+        receipt.transactionIndex = outputBigNumberFormatter(receipt.transactionIndex);
+    receipt.cumulativeGasUsed = outputBigNumberFormatter(receipt.cumulativeGasUsed);
+    receipt.gasUsed = outputBigNumberFormatter(receipt.gasUsed);
 
     if (_.isArray(receipt.logs)) {
         receipt.logs = receipt.logs.map(outputLogFormatter);
@@ -299,12 +299,12 @@ var outputTransactionReceiptFormatter = function (receipt) {
 var outputBlockFormatter = function (block) {
 
     // transform to number
-    block.gasLimit = utils.outputBigNumberFormatter(block.gasLimit);
-    block.gasUsed = utils.outputBigNumberFormatter(block.gasUsed);
-    block.size = utils.outputBigNumberFormatter(block.size);
-    block.timestamp = utils.outputBigNumberFormatter(block.timestamp);
+    block.gasLimit = outputBigNumberFormatter(block.gasLimit);
+    block.gasUsed = outputBigNumberFormatter(block.gasUsed);
+    block.size = outputBigNumberFormatter(block.size);
+    block.timestamp = outputBigNumberFormatter(block.timestamp);
     if (block.number !== null)
-        block.number = utils.outputBigNumberFormatter(block.number);
+        block.number = outputBigNumberFormatter(block.number);
 
     if (block.difficulty)
         block.difficulty = outputBigNumberFormatter(block.difficulty);
@@ -392,11 +392,11 @@ var outputLogFormatter = function (log) {
     }
 
     if (log.blockNumber !== null)
-        log.blockNumber = utils.outputBigNumberFormatter(log.blockNumber);
+        log.blockNumber = outputBigNumberFormatter(log.blockNumber);
     if (log.transactionIndex !== null)
-        log.transactionIndex = utils.outputBigNumberFormatter(log.transactionIndex);
+        log.transactionIndex = outputBigNumberFormatter(log.transactionIndex);
     if (log.logIndex !== null)
-        log.logIndex = utils.outputBigNumberFormatter(log.logIndex);
+        log.logIndex = outputBigNumberFormatter(log.logIndex);
 
     if (log.address) {
         log.address = utils.toChecksumAddress(log.address);
