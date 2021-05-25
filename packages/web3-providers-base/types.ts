@@ -35,4 +35,5 @@ export interface IWeb3Provider {
     };
     unsubscribe?: (eventEmitter: EventEmitter, subscriptionId: number) => void;
     disconnect?: () => void;
+    supportsSubscriptions: () => void
 }
