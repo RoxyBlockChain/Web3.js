@@ -1,8 +1,7 @@
 import Web3ProviderHttp from 'web3-providers-http';
+import Web3ProvidersWs from 'web3-providers-ws';
 import { ProviderOptions } from 'web3-providers-base/types';
 
-// TODO Make eslint happy
-/* eslint-disable */
 enum ProviderProtocol {
     UNKNOWN,
     HTTP,
@@ -11,7 +10,7 @@ enum ProviderProtocol {
 }
 
 export default class Web3RequestManager {
-    provider: Web3ProviderHttp | undefined;
+    provider: Web3ProviderHttp | Web3ProvidersWs | undefined;
 
     providerProtocol: ProviderProtocol = ProviderProtocol.UNKNOWN;
 
@@ -26,6 +25,7 @@ export default class Web3RequestManager {
                 this.providerProtocol = ProviderProtocol.HTTP;
                 break;
             case ProviderProtocol.WS:
+                this.provider = new Web3ProvidersWs(providerOptions);
                 this.providerProtocol = ProviderProtocol.WS;
                 // TODO
                 throw Error('Provider protocol not implemented');

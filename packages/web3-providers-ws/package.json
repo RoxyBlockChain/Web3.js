@@ -22,6 +22,7 @@
     },
     "devDependencies": {
         "@types/jest": "^26.0.22",
+        "@types/ws": "^7.4.4",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^4.22.0",
         "eslint": "^7.24.0",
@@ -33,6 +34,8 @@
         "typescript": "^4.2.4"
     },
     "dependencies": {
-        "web3-providers-base": "^1.0.0"
+        "isomorphic-ws": "^4.0.1",
+        "web3-providers-base": "^1.0.0",
+        "ws": "^7.4.6"
     }
 }

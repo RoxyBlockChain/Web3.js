@@ -2,16 +2,15 @@ import axios, { AxiosInstance } from 'axios';
 import Web3ProviderBase from 'web3-providers-base';
 import {
     ProviderOptions,
-    IWeb3Provider,
     BaseRpcOptions,
     BaseRpcResponse,
 } from 'web3-providers-base/types';
 import { EventEmitter } from 'events';
-import { SubscriptionOptions } from '../types';
+import { IWeb3ProviderHttp, SubscriptionOptions } from '../types';
 
 export default class Web3ProvidersHttp
     extends Web3ProviderBase
-    implements IWeb3Provider
+    implements IWeb3ProviderHttp
 {
     private _httpClient: AxiosInstance;
     private _subscriptions: {
@@ -53,6 +52,10 @@ export default class Web3ProvidersHttp
         } catch (error) {
             throw Error(`Failed to set provider: ${error.message}`);
         }
+    }
+
+    supportsSubscriptions() {
+        return true;
     }
 
     async send(options: BaseRpcOptions): Promise<BaseRpcResponse> {

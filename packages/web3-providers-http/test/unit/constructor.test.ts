@@ -7,7 +7,7 @@ describe('constructs a Web3ProvidersHttp instance with expected properties', () 
         providerUrl: 'http://127.0.0.1:8545',
     };
 
-    it('providerOptions - falsey', () => {
+    it('providerOptions', () => {
         const web3ProvidersHttp = new Web3ProvidersHttp(providerOptions);
         expect(web3ProvidersHttp).toMatchObject(providerOptions);
     });
