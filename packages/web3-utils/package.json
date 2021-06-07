@@ -2,7 +2,7 @@
     "name": "web3-utils",
     "version": "4.0.0",
     "description": "Utilities for Web3 4.x.x",
-    "main": "src/index.ts",
+    "main": "lib/src/index.js",
     "repository": "https://github.com/ChainSafe/web3.js",
     "author": "ChainSafe Systems",
     "license": "LGPL-3.0",
@@ -30,7 +30,7 @@
         "prettier": "^2.3.0",
         "ts-jest": "^26.5.4",
         "typescript": "^4.2.4",
-        "web3-providers-base": "^1.0.0"
+        "web3-providers-base": "./packages/web3-providers-base"
     },
     "dependencies": {
         "ethereumjs-util": "^7.0.10"

@@ -7892,6 +7892,32 @@ wcwidth@^1.0.0:
   dependencies:
     defaults "^1.0.3"
 
+web3-core-requestmanager@./packages/web3-core-requestmanager:
+  version "4.0.0"
+  dependencies:
+    web3-providers-base "./packages/web3-providers-base"
+    web3-providers-http "./packages/web3-providers-http"
+
+web3-eth@./packages/web3-eth:
+  version "4.0.0"
+  dependencies:
+    web3-core-requestmanager "./packages/web3-core-requestmanager"
+    web3-utils "./packages/web3-utils"
+
+web3-providers-base@./packages/web3-providers-base:
+  version "1.0.0"
+
+web3-providers-http@./packages/web3-providers-http:
+  version "4.0.0"
+  dependencies:
+    axios "^0.21.1"
+    web3-providers-base "./packages/web3-providers-base"
+
+web3-utils@./packages/web3-utils:
+  version "4.0.0"
+  dependencies:
+    ethereumjs-util "^7.0.10"
+
 webidl-conversions@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-5.0.0.tgz#ae59c8a00b121543a2acc65c0434f57b0fc11aff"
