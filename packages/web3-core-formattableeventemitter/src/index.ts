@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import { ValidTypesEnum } from 'web3-utils/types';
-import {formatOutput} from 'web3-utils'
+import { formatOutput } from 'web3-utils';
 
 import { FormattableEventEmitterOptions, OnOptions } from '../types';
 
@@ -15,9 +15,8 @@ export class FormattableEventEmitter extends EventEmitter {
     formattableOn(
         event: string | symbol,
         listener: (...args: any[]) => void,
-        options: OnOptions): any {
-        super.on(event, (response: any) => {
-            
-        }))
+        options: OnOptions
+    ): any {
+        super.on(event, (response: any) => {});
     }
 }
