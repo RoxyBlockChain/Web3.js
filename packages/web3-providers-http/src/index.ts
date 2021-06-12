@@ -7,7 +7,7 @@ import {
     RpcOptions,
     SubscriptionResponse,
 } from 'web3-providers-base/types';
-import { EventEmitter } from 'events';
+import { FormattableEventEmitter } from 'web3-core-formattableeventemitter';
 import { HttpOptions } from '../types';
 
 export default class Web3ProvidersHttp
@@ -85,7 +85,9 @@ export default class Web3ProvidersHttp
         try {
             if (this._httpClient === undefined)
                 throw Error('No HTTP client initiliazed');
-            const eventEmitter = new EventEmitter();
+            const eventEmitter = new FormattableEventEmitter({
+                returnType: httpOptions?.subscriptionOptions?.returnType,
+            });
             const subscriptionId = Math.floor(
                 Math.random() * Number.MAX_SAFE_INTEGER
             ); // generate random integer
@@ -103,7 +105,7 @@ export default class Web3ProvidersHttp
 
     private async _subscribe(
         rpcOptions: RpcOptions,
-        eventEmitter: EventEmitter,
+        eventEmitter: FormattableEventEmitter,
         subscriptionId: number,
         httpOptions?: HttpOptions
     ) {
@@ -126,7 +128,7 @@ export default class Web3ProvidersHttp
         }
     }
 
-    unsubscribe(eventEmitter: EventEmitter, subscriptionId: number) {
+    unsubscribe(eventEmitter: FormattableEventEmitter, subscriptionId: number) {
         try {
             if (!this._subscriptions[subscriptionId])
                 throw Error(

@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+import { ValidTypesEnum } from 'web3-utils/types';
 
 export interface HttpOptions {
     axiosConfig?: AxiosRequestConfig;
@@ -7,4 +8,5 @@ export interface HttpOptions {
 
 export interface SubscriptionOptions {
     milisecondsBetweenRequests?: number;
+    returnType?: ValidTypesEnum;
 }

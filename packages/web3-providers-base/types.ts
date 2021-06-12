@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { FormattableEventEmitter } from 'web3-core-formattableeventemitter';
 import { HttpOptions } from 'web3-providers-http/types';
 import { EthFilter, EthTransaction } from 'web3-eth/types';
 import { HexString, ValidTypesEnum } from 'web3-utils/types';
@@ -70,6 +70,9 @@ export interface IWeb3Provider {
         rpcOptions: RpcOptions,
         providerCallOptions: ProviderCallOptions
     ) => SubscriptionResponse;
-    unsubscribe?: (eventEmitter: EventEmitter, subscriptionId: number) => void;
+    unsubscribe?: (
+        eventEmitter: FormattableEventEmitter,
+        subscriptionId: number
+    ) => void;
     disconnect?: () => void;
 }

@@ -1,7 +1,7 @@
 {
-    "name": "web3-providers-base",
+    "name": "web3-core-formattableeventemitter",
     "version": "1.0.0",
-    "description": "Ethereum provider base class for Web3 4.x.x",
+    "description": "Ethereum Formattable Event Emitter class for Web3 4.x.x",
     "main": "src/index.ts",
     "repository": "https://github.com/ChainSafe/web3.js",
     "author": "ChainSafe Systems",
@@ -17,6 +17,7 @@
         "compile": "tsc --build",
         "lint": "yarn prettier --write . && eslint \"./src/**/*.ts\" --max-warnings=0",
         "test": "jest",
+        "test:integration": "jest ./test/integration",
         "test:unit": "jest ./test/unit"
     },
     "devDependencies": {
@@ -29,10 +30,9 @@
         "jest": "^26.6.3",
         "prettier": "^2.3.0",
         "ts-jest": "^26.5.4",
-        "typescript": "^4.2.4",
-        "web3-providers-http": "^4.0.0",
-        "web3-eth": "^4.0.0",
-        "web3-utils": "^4.0.0",
-        "web3-core-formattableeventemitter": "^1.0.0"
+        "typescript": "^4.2.4"
+    },
+    "dependencies": {
+        "web3-utils": "^4.0.0"
     }
 }
