@@ -1,4 +1,7 @@
+import Web3LoggerVersion from 'web3-core-logger/src/_version';
+
 import Web3ProvidersHttp from '../../src/index';
+import Version from '../../src/_version';
 
 describe('constructs a Web3ProvidersHttp instance with expected properties', () => {
     let web3ProvidersHttpRequestSpy: jest.SpyInstance;
@@ -21,10 +24,9 @@ describe('constructs a Web3ProvidersHttp instance with expected properties', () 
         Web3ProvidersHttp.prototype.request.mockReturnValue(chainIdResult);
     });
 
-    it('should instantiate with expected properties', () => {
+    it('should instantiate successfully', () => {
         const expectedClient = 'http://127.0.0.1:8545';
-        const web3ProvidersHttp = new Web3ProvidersHttp(expectedClient);
-        expect(web3ProvidersHttp.web3Client).toBe(expectedClient);
+        new Web3ProvidersHttp(expectedClient);
     });
 
     it('should fail to instantiate with invalid client error', () => {
@@ -32,7 +34,15 @@ describe('constructs a Web3ProvidersHttp instance with expected properties', () 
             // @ts-ignore - Ignore invalid type
             new Web3ProvidersHttp({});
         }).toThrowError(
-            'Failed to create HTTP client: Invalid HTTP(S) URL provided'
+            [
+                `loggerVersion: ${Web3LoggerVersion}`,
+                'packageName: web3-providers-http',
+                `packageVersion: ${Version}`,
+                'code: 1',
+                'name: invalidClientUrl',
+                'msg: Provided web3Client is an invalid HTTP(S) URL',
+                'params: {"web3Client":{}}',
+            ].join('\n')
         );
     });
 

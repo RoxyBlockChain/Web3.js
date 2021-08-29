@@ -5,8 +5,10 @@ import {
     Eth1RequestArguments,
     Web3ProviderEvents,
 } from 'web3-core-types/src/types';
+import Web3LoggerVersion from 'web3-core-logger/src/_version';
 
 import Web3ProvidersEip1193 from '../../src/index';
+import Version from '../../src/_version';
 
 describe('constructs a Web3ProvidersEip1193 instance with expected properties', () => {
     let eip1193Provider: Eip1193Provider;
@@ -46,7 +48,7 @@ describe('constructs a Web3ProvidersEip1193 instance with expected properties', 
             ) => eip1193Provider,
         });
 
-        const response = await web3ProvidersEip1193.web3Client.request({
+        const response = await web3ProvidersEip1193.request({
             method: 'foo',
         });
         expect(response).toBe(expectedResponse);
@@ -57,7 +59,15 @@ describe('constructs a Web3ProvidersEip1193 instance with expected properties', 
             // @ts-ignore - Ignore invalid type
             web3ProvidersEip1193.setWeb3Client({});
         }).toThrowError(
-            'Failed to set web3 client: Invalid EIP-1193 client provided'
+            [
+                `loggerVersion: ${Web3LoggerVersion}`,
+                'packageName: web3-providers-eip1193',
+                `packageVersion: ${Version}`,
+                'code: 1',
+                'name: invalidClient',
+                'msg: Provided web3Client is an invalid EIP-1193 client',
+                'params: {"web3Client":{}}',
+            ].join('\n')
         );
     });
 
