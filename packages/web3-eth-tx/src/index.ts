@@ -47,11 +47,14 @@ export function initEthTx(
                 throw web3CoreLogger.makeError(
                     Web3EthTxErrorNames.noWeb3Provider,
                     {
-                        reason: 'Attempting to fill missing transaction properties, but no Web3Provider is available to make requests to'
+                        reason: 'Attempting to fill missing transaction properties, but no Web3Provider is available to make requests to',
                     }
-                )
+                );
 
-            modifiedTxData = _fillProperties(modifiedTxData, options.web3Provider)
+            modifiedTxData = _fillProperties(
+                modifiedTxData,
+                options.web3Provider
+            );
         }
         return TransactionFactory.fromTxData(modifiedTxData);
     } catch (error) {
@@ -59,7 +62,10 @@ export function initEthTx(
     }
 }
 
-async function _fillProperties(txData: EthTxNormalized, web3Provider: IWeb3Provider): Promise<EthTxNormalized> {
+async function _fillProperties(
+    txData: EthTxNormalized,
+    web3Provider: IWeb3Provider
+): Promise<EthTxNormalized> {
     // Check if EIP-1559
     if (
         txData.type === '0x2' ||
@@ -68,15 +74,18 @@ async function _fillProperties(txData: EthTxNormalized, web3Provider: IWeb3Provi
     ) {
         txData = await _fillEip1559(txData, web3Provider);
     } else {
-        if (txData.accessList) txData.type = '0x1'
+        if (txData.accessList) txData.type = '0x1';
         const gasPrice = await getGasPrice(web3Provider);
         txData.gasPrice = gasPrice.result as PrefixedHexString;
     }
 
-    return txData
+    return txData;
 }
 
-async function _fillEip1559(txData: EthTxNormalized, web3Provider: IWeb3Provider): Promise<EthTxNormalized> {
+async function _fillEip1559(
+    txData: EthTxNormalized,
+    web3Provider: IWeb3Provider
+): Promise<EthTxNormalized> {
     txData.type = '0x2';
     if (txData.maxPriorityFeePerGas === undefined)
         txData.maxPriorityFeePerGas = '0x3B9ACA00'; // 1 Gwei
@@ -97,12 +106,12 @@ async function _fillEip1559(txData: EthTxNormalized, web3Provider: IWeb3Provider
             false
         );
         if (block.result?.baseFeePerGas) {
-            txData.maxFeePerGas =
-                (BigInt(block.result.baseFeePerGas) *
-                BigInt(2) +
-                BigInt(txData.maxPriorityFeePerGas)).toString(16)
+            txData.maxFeePerGas = (
+                BigInt(block.result.baseFeePerGas) * BigInt(2) +
+                BigInt(txData.maxPriorityFeePerGas)
+            ).toString(16);
         }
     }
 
-    return txData
+    return txData;
 }
