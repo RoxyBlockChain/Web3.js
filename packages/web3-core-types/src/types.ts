@@ -245,6 +245,7 @@ export interface RpcBlockResult extends RpcResponse {
         timestamp: ValidTypes;
         transactions: EthMinedTransaction[] | PrefixedHexString[];
         uncles: PrefixedHexString[];
+        baseFeePerGas?: PrefixedHexString;
     };
 }
 

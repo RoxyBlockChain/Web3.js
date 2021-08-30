@@ -1,4 +1,8 @@
-import { PrefixedHexString, ValidTypes } from 'web3-core-types/src/types';
+import {
+    IWeb3Provider,
+    PrefixedHexString,
+    ValidTypes,
+} from 'web3-core-types/src/types';
 
 type JsonAccessListItem = { address: PrefixedHexString; storageKeys: string[] };
 
@@ -30,22 +34,23 @@ export interface EthTxEip1559 extends EthTxEip2930 {
 }
 
 export interface EthTxOptions {
-    fillProperties?: false
+    dontFillProperties?: true;
+    web3Provider?: IWeb3Provider;
 }
 
 export interface EthTxNormalized {
-    nonce?: ValidTypes;
+    nonce?: PrefixedHexString;
     to?: PrefixedHexString;
     data?: PrefixedHexString;
-    v?: ValidTypes;
+    v?: PrefixedHexString;
     r?: PrefixedHexString;
     s?: PrefixedHexString;
-    value?: ValidTypes;
-    chainId?: ValidTypes;
-    gasLimit?: ValidTypes;
-    gasPrice?: ValidTypes;
+    value?: PrefixedHexString;
+    chainId?: PrefixedHexString;
+    gasLimit?: PrefixedHexString;
+    gasPrice?: PrefixedHexString;
     accessList?: JsonAccessListItem[];
-    type?: ValidTypes;
-    maxPriorityFeePerGas?: ValidTypes;
-    maxFeePerGas?: ValidTypes;
+    type?: PrefixedHexString;
+    maxPriorityFeePerGas?: PrefixedHexString;
+    maxFeePerGas?: PrefixedHexString;
 }
