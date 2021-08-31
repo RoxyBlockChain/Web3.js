@@ -66,7 +66,7 @@ async function _fillProperties(
     txData: EthTxNormalized,
     web3Provider: IWeb3Provider
 ): Promise<EthTxNormalized> {
-    let _txData = {...txData}
+    let _txData = { ...txData };
 
     // Check if EIP-1559
     if (
@@ -88,7 +88,7 @@ async function _fillEip1559(
     txData: EthTxNormalized,
     web3Provider: IWeb3Provider
 ): Promise<EthTxNormalized> {
-    let _txData = txData
+    let _txData = txData;
 
     _txData.type = '0x2';
     if (_txData.maxPriorityFeePerGas === undefined)
